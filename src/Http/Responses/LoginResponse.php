@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Laravel\Fortify\Http\Responses;
 
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
-use Laravel\Fortify\Traits\RouteLocalePrefixTrait;
+use Laravel\Fortify\Traits\RouteLocalePrefix;
 
 class LoginResponse implements LoginResponseContract
 {
-    use RouteLocalePrefixTrait;
+    use RouteLocalePrefix;
 
     /**
      * Create an HTTP response that represents the object.
@@ -20,7 +20,10 @@ class LoginResponse implements LoginResponseContract
     public function toResponse($request)
     {
         return $request->wantsJson()
-                    ? response()->json(['two_factor' => false])
-                    : redirect()->intended(config('fortify.home'));
+            ? response()->json(['two_factor' => false])
+            : redirect()->intended(
+                $this->localePrefix($request)
+                . config('fortify.home')
+            );
     }
 }

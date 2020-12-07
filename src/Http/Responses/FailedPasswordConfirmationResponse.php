@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Laravel\Fortify\Http\Responses;
 
-use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\FailedPasswordConfirmationResponse as FailedPasswordConfirmationResponseContract;
 

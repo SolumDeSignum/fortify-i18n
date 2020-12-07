@@ -7,11 +7,11 @@ namespace Laravel\Fortify\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use LocaleTrait;
+use Laravel\Fortify\Traits\RouteLocalePrefix;
 
 class EmailVerificationNotificationController extends Controller
 {
-    use LocaleTrait;
+    use RouteLocalePrefix;
 
     /**
      * Send a new email verification notification.
@@ -23,8 +23,11 @@ class EmailVerificationNotificationController extends Controller
     {
         if ($request->user()->hasVerifiedEmail()) {
             return $request->wantsJson()
-                        ? new JsonResponse('', 204)
-                        : redirect()->intended(config('fortify.home'));
+                ? new JsonResponse('', 204)
+                : redirect()->intended(
+                    $this->localePrefix($request)
+                    . config('fortify.home')
+                );
         }
 
         $request->user()->sendEmailVerificationNotification();

@@ -17,6 +17,9 @@ return [
     'limiters' => [
         'login' => null,
     ],
+    'localized' => [
+        'i18n' => false
+    ],
     'features' => [
         Features::registration(),
         Features::resetPasswords(),

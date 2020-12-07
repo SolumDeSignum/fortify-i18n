@@ -6,11 +6,11 @@ namespace Laravel\Fortify\Http\Responses;
 
 use Illuminate\Http\JsonResponse;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
-use Laravel\Fortify\Traits\RouteLocalePrefixTrait;
+use Laravel\Fortify\Traits\RouteLocalePrefix;
 
 class TwoFactorLoginResponse implements TwoFactorLoginResponseContract
 {
-    use RouteLocalePrefixTrait;
+    use RouteLocalePrefix;
 
     /**
      * Create an HTTP response that represents the object.
@@ -21,7 +21,10 @@ class TwoFactorLoginResponse implements TwoFactorLoginResponseContract
     public function toResponse($request)
     {
         return $request->wantsJson()
-                    ? new JsonResponse('', 204)
-                    : redirect()->intended(config('fortify.home'));
+            ? new JsonResponse('', 204)
+            : redirect()->intended(
+                $this->localePrefix($request)
+                . config('fortify.home')
+            );
     }
 }
