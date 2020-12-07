@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laravel\Fortify;
 
+use function config;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,9 +33,8 @@ use Laravel\Fortify\Http\Responses\PasswordConfirmedResponse;
 use Laravel\Fortify\Http\Responses\PasswordResetResponse;
 use Laravel\Fortify\Http\Responses\RegisterResponse;
 use Laravel\Fortify\Http\Responses\SuccessfulPasswordResetLinkRequestResponse;
-use Laravel\Fortify\Http\Responses\TwoFactorLoginResponse;
 
-use function config;
+use Laravel\Fortify\Http\Responses\TwoFactorLoginResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -128,7 +128,7 @@ class FortifyServiceProvider extends ServiceProvider
         if (Fortify::$registersRoutes) {
             if (config('fortify.localized.i18n')) {
                 Route::localized(
-                    function () {
+                    function (): void {
                         $this->routes();
                     }
                 );

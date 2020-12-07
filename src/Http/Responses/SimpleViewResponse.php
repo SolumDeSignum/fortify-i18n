@@ -48,7 +48,7 @@ class SimpleViewResponse implements
     /**
      * @param Request $request
      *
-     * @return Application|Factory|View|mixed|Response
+     * @return Application|Factory|mixed|Response|View
      */
     public function toResponse($request)
     {

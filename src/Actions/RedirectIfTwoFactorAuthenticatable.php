@@ -12,8 +12,6 @@ use Laravel\Fortify\Fortify;
 use Laravel\Fortify\LoginRateLimiter;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 
-use function dd;
-
 class RedirectIfTwoFactorAuthenticatable
 {
     /**
@@ -84,8 +82,6 @@ class RedirectIfTwoFactorAuthenticatable
 
         return tap($model::where(Fortify::username(), $request->{Fortify::username()})->first(), function ($user) use ($request): void {
             if (! $user || ! Hash::check($request->password, $user->password)) {
-                dd($user);
-
                 $this->fireFailedEvent($request, $user);
 
                 $this->throwFailedAuthenticationException($request);
