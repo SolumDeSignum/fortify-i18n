@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace Laravel\Fortify\Http\Responses;
 
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Laravel\Fortify\Contracts\ConfirmPasswordViewResponse;
 use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Contracts\RegisterViewResponse;
@@ -16,7 +12,6 @@ use Laravel\Fortify\Contracts\RequestPasswordResetLinkViewResponse;
 use Laravel\Fortify\Contracts\ResetPasswordViewResponse;
 use Laravel\Fortify\Contracts\TwoFactorChallengeViewResponse;
 use Laravel\Fortify\Contracts\VerifyEmailViewResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class SimpleViewResponse implements
     LoginViewResponse,
@@ -46,17 +41,18 @@ class SimpleViewResponse implements
     }
 
     /**
-     * @param Request $request
+     * Create an HTTP response that represents the object.
      *
-     * @return Application|Factory|mixed|Response|View
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function toResponse($request)
     {
-        if (! \is_callable($this->view) || \is_string($this->view)) {
+        if (! is_callable($this->view) || is_string($this->view)) {
             return view($this->view, ['request' => $request]);
         }
 
-        $response = \call_user_func($this->view, $request);
+        $response = call_user_func($this->view, $request);
 
         if ($response instanceof Responsable) {
             return $response->toResponse($request);

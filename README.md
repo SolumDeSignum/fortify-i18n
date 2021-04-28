@@ -55,7 +55,7 @@ You may use Fortify (without Jetstream) to serve a headless authentication backe
 To get started, install Fortify using Composer:
 
 ```bash
-composer require laravel/fortify
+composer require solumdesignum/fortify
 ```
 
 Next, publish Fortify's resources:

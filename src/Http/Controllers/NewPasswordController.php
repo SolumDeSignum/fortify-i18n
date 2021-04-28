@@ -29,8 +29,7 @@ class NewPasswordController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \Illuminate\Contracts\Auth\StatefulGuard
-     * @param StatefulGuard $guard
+     * @param  \Illuminate\Contracts\Auth\StatefulGuard  $guard
      * @return void
      */
     public function __construct(StatefulGuard $guard)
@@ -60,6 +59,7 @@ class NewPasswordController extends Controller
         $request->validate([
             'token' => 'required',
             Fortify::email() => 'required|email',
+            'password' => 'required',
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we

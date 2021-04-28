@@ -6,6 +6,7 @@ namespace Laravel\Fortify\Actions;
 
 use Illuminate\Support\Collection;
 use Laravel\Fortify\RecoveryCode;
+use Laravel\Fortify\Events\RecoveryCodesGenerated;
 
 class GenerateNewRecoveryCodes
 {
@@ -22,5 +23,7 @@ class GenerateNewRecoveryCodes
                 return RecoveryCode::generate();
             })->all())),
         ])->save();
+
+        RecoveryCodesGenerated::dispatch($user);
     }
 }
