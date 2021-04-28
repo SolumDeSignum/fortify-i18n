@@ -18,10 +18,10 @@
         }
     ],
     "require": {
-        "php": "^7.3|^7.4|^8.0",
+        "php": "^7.4|^8.0|^8.1",
         "ext-json": "*",
         "bacon/bacon-qr-code": "^2.0",
-        "illuminate/support": "^6.0|^7.0|^8.0",
+        "illuminate/support": "~6|~7|~8|~9",
         "pragmarx/google2fa": "^7.0|^8.0",
         "codezero/laravel-localized-routes": "^2.4",
         "codezero/laravel-localizer": "^1.4"
