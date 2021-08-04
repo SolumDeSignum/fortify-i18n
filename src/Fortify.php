@@ -75,7 +75,7 @@ class Fortify
      */
     public static function viewNamespace(string $namespace)
     {
-        return static::viewPrefix($namespace.'::');
+        static::viewPrefix($namespace.'::');
     }
 
     /**
@@ -194,7 +194,7 @@ class Fortify
      */
     public static function loginThrough(callable $callback)
     {
-        return static::authenticateThrough($callback);
+        static::authenticateThrough($callback);
     }
 
     /**
@@ -238,7 +238,7 @@ class Fortify
      */
     public static function createUsersUsing(string $callback)
     {
-        return app()->singleton(CreatesNewUsers::class, $callback);
+        app()->singleton(CreatesNewUsers::class, $callback);
     }
 
     /**
@@ -249,7 +249,7 @@ class Fortify
      */
     public static function updateUserProfileInformationUsing(string $callback)
     {
-        return app()->singleton(UpdatesUserProfileInformation::class, $callback);
+        app()->singleton(UpdatesUserProfileInformation::class, $callback);
     }
 
     /**
@@ -260,7 +260,7 @@ class Fortify
      */
     public static function updateUserPasswordsUsing(string $callback)
     {
-        return app()->singleton(UpdatesUserPasswords::class, $callback);
+        app()->singleton(UpdatesUserPasswords::class, $callback);
     }
 
     /**
@@ -271,7 +271,7 @@ class Fortify
      */
     public static function resetUserPasswordsUsing(string $callback)
     {
-        return app()->singleton(ResetsUserPasswords::class, $callback);
+        app()->singleton(ResetsUserPasswords::class, $callback);
     }
 
     /**
