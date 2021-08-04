@@ -1,5 +1,5 @@
 {
-    "name": "solumdesignum/fortify",
+    "name": "solumdesignum/fortify-18n",
     "description": "Backend controllers and scaffolding for Laravel authentication.",
     "keywords": ["laravel", "auth"],
     "license": "MIT",
